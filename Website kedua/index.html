@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login</title>
+    <style>
+        :root {
+            --spotify-green: #1DB954;
+            --bg-dark: #121212;
+            --card-bg: #181818;
+            --input-bg: #2A2A2A;
+            --text-main: #FFFFFF;
+            --text-dim: #B3B3B3;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: radial-gradient(circle at top left, #222, #121212 80%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            background-color: var(--card-bg);
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+      /* Update the Heading */
+h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+    color: #FFFFFF; /* Force white */
+}
+
+/* Update the Labels above the inputs */
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #FFFFFF; /* Changed from var(--text-main) to pure white */
+}
+
+/* Optional: If you want the text INSIDE the green button to be white too */
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--spotify-green);
+    color: #FFFFFF; /* Changed from black to white */
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 500px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--input-bg);
+            border: 1px solid transparent;
+            border-radius: 4px;
+            color: white;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--spotify-green);
+            background-color: #333;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--spotify-green);
+            color: black;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 500px; /* Fully rounded pill shape */
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #1ed760;
+            transform: scale(1.03);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            min-height: 1.2em; /* Prevents layout jump */
+        }
+
+        /* Small link styles for aesthetics */
+        .footer-links {
+            margin-top: 25px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <h2>Log In</h2>
+    
+    <div class="input-group">
+        <label for="username">Email or username</label>
+        <input type="text" id="username" placeholder="Username">
+    </div>
+
+    <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Password">
+    </div>
+
+    <button onclick="handleLogin()">LOG IN</button>
+
+    <div id="message"></div>
+
+    <div class="footer-links">
+        Forgot your password?
+    </div>
+</div>
+
+<script>
+    const users = [
+        { user: "raphael", pass: "raphael", target: "Raphael.html" },
+        { user: "edsel", pass: "edsel", target: "Edsel.html" },
+        { user: "hopein", pass: "hopein", target: "Hopein.html" }
+    ];
+
+    function handleLogin() {
+        const u = document.getElementById('username').value.trim().toLowerCase();
+        const p = document.getElementById('password').value.trim();
+        const msg = document.getElementById('message');
+
+        const match = users.find(acc => acc.user === u && acc.pass === p);
+
+        if (match) {
+            msg.style.color = "#1DB954";
+            msg.innerText = "Welcome back! Redirecting...";
+            setTimeout(() => {
+                window.location.href = match.target;
+            }, 1000);
+        } else {
+            msg.style.color = "#FF4136";
+            msg.innerText = "Incorrect username or password.";
+        }
+    }
+</script>
+
+</body>
+</html>
